@@ -28,6 +28,7 @@ Temporary Items
 .apdisk
 scripts
 .venv
+dist/
 
 ### Windows ###
 # Windows thumbnail cache files
