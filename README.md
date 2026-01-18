@@ -1,4 +1,4 @@
-# Notepad++ Cisco IOS UDL Highlighter
+<h1 align="center">Notepad++ Cisco IOS UDL</h1>
 
 <p align="center">
   <img src="assets/cisco-logo.png" alt="Cisco Logo" title="Cisco" width="300" />
