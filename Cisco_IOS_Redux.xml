@@ -1,0 +1,64 @@
+<NotepadPlus>
+    <UserLang name="Cisco IOS Redux" ext="cisco ios log txt conf config" udlVersion="2.1">
+        <Settings>
+            <Global caseIgnored="yes" allowFoldOfComments="yes" foldCompact="no" forcePureLC="1" decimalSeparator="2" />
+            <Prefix Keywords1="no" Keywords2="no" Keywords3="no" Keywords4="no" Keywords5="yes" Keywords6="no" Keywords7="no" Keywords8="no" />
+        </Settings>
+        <KeywordLists>
+            <Keywords name="Comments">00! 00remark 01 02((EOF)) 03 04</Keywords>
+            <Keywords name="Numbers, prefix1">S G Ap</Keywords>
+            <Keywords name="Numbers, prefix2"></Keywords>
+            <Keywords name="Numbers, extras1"></Keywords>
+            <Keywords name="Numbers, extras2"></Keywords>
+            <Keywords name="Numbers, suffix1"></Keywords>
+            <Keywords name="Numbers, suffix2"></Keywords>
+            <Keywords name="Numbers, range">:: : - .</Keywords>
+            <Keywords name="Operators1">| / : :: . , &lt; &gt;</Keywords>
+            <Keywords name="Operators2"></Keywords>
+            <Keywords name="Folders in code1, open"></Keywords>
+            <Keywords name="Folders in code1, middle"></Keywords>
+            <Keywords name="Folders in code1, close"></Keywords>
+            <Keywords name="Folders in code2, open"></Keywords>
+            <Keywords name="Folders in code2, middle"></Keywords>
+            <Keywords name="Folders in code2, close"></Keywords>
+            <Keywords name="Folders in comment, open">{</Keywords>
+            <Keywords name="Folders in comment, middle"></Keywords>
+            <Keywords name="Folders in comment, close">}</Keywords>
+            <Keywords name="Keywords1">aaa_server Access access-group access-log accounting acct-port action address admission advertise-v2 aes-ccm age ahp allocation alternate-address ap arp ascending attach-policy auth auth-port auth-proxy authenticate-fail authentication authentication-server authorization auto auto-sync aux basic- begin block-unknown-source bootpc bootps bootup bpdufilter bpduguard brief broadcast bus cache capability-change cck cdp cef certificate chain change chassis-id ciphers classless client client-id clock coldstart common community compress-config config config-copy conflict connected connection console contact control-plane conversion-error cor counters country cpu crypto cs4 custom datagram-conversion-error datetime dead-criteria deauthenticate debug destination device dhcp dial-peer disassociate domain domain-name-reply domain-name-request dot11-qos dot11d dot1Q eap echo echo-reply edge enrollment entity entries eq esp exclude excluded-address exec exec-time extendable extended fallback file finrst-timeout flash flow flow-aggregation flow-export flowcontrol forward-protocol general-prefix gre group Guest guest-mode h-node help-path helper-address host icmp icmpv6 igmp include included indoor information-reply information-request infrastructure ingress inside ipinip ipsec ipv6-i-am-here ipv6-where-are-you irb iso key key-management level linkdown linkup list local localtime location log logging login mac-address main-cpu mask-reply mask-request max membership-termination mgmt min-length minimal missing mobile-host-redirect mobile-redirect mobile-registration-reply mobile-registration-request mode modulus msec name nat nat-transparency native nde-address neighbor netbios-dgm netbios-ns netflow network new-model newinfo next-hop nonegotiate nos object object-group ofdm open optional pad page parameter-problem password password-encryption passwords pcp photuris pim pki policy pool port-security preempt prefer prefix primary priority privilege protected proxy proxy-arp PT pvst qos ra radius range rapid-pvst ratelimit recovery recurring redirect redirects redundancy resource revocation-check rogue-ap root route route-cache router-advertisement router-id router-solicitation routing rp rsakeypair run sctp secondary secret section secure-server self-signed selfsigned send server Service-Type session-id skip snmptrap source source-interface source-learning source-learning source-quench spanning-disabled ssid sso start-stop static station-role subject-name subnet-zero subscriber-loop-control summary summary summary-address summer-time switch-over syslog system tacacs+ tcp-timeout threshold time time-exceeded timestamp-reply timestamp-request timestamps timezone tkip traceroute tracking traffic-filter translation translations transport trap traps tries trunk trustpoint tty type udp udp-encaps udp-port unicast-flooding unicast-routing unreachable unreachables update update-calendar upgrade uptime usage v3 version view voice vsa vty warmstart wds wep wep128 window-size wlan-wep wnm wpa write</Keywords>
+            <Keywords name="Keywords2">aaa access-class access-list aging algorithm algorithm-type autostate banner binding boot bpdu bridge bridge-group broadcast-key channel channel-group channel-protocol class class-map client-identifier configure copy default-router description device-tracking diagnostic dir dns-server domain-lookup domain-name dot11 dot1x duplex encapsulation encryption errdisable hostname inactivity input install int interface ip IP-Address lease license line lldp maximum mbssid Method mls mpls nd neighbors netbios-name-server netbios-node-type ntp OK? police policy-map power process Protocol radius-server reauth-period redistribute relay request restrict route-map router rsa rts  security service service-policy sntp software spanning-tree speed stackwise-virtual Status storm-control switch switchport sync tacacs-server udld username validate vrf vtp wlccp world-mode wr</Keywords>
+            <Keywords name="Keywords3">boot-end-marker cause clear crashinfo delete deny down drop end erase error exceed-action exception exec-timeout exit exit-address-family expired failure gbic-invalid ignore inactive inactivity limit max-fail misconfig no none off on-failure out outside removal remove removed reset running-config session-timeout shutdown standby startup-config stop-record system-shutdown theft timeout unassigned unset violation zeroize zeroize</Keywords>
+            <Keywords name="Keywords4">activate active add addon aging allow allowed any authenticate authentication-key auto-copy auto-upgrade binding boot-start-marker both clean commit complete conform-action desirable detail enable enabled established full generate gt guard in information insertion match maximum on on-success optimize permit preempt receive relay reload RO RW send-community set show statistics success transmit trust trusted-key up update-source validate verify yes</Keywords>
+            <Keywords name="Keywords5">ack address-family allow-hint automatic buffered BVI channel-misconfig debugging default-gateway Dot11Radio dynamic etherchannel Ethernet evaluate extend FastEthernet fin FortyGigabitEthernet general-keys GigabitEthernet HundredGigE if-authenticated include inspection interval IPDT_POLICY label link link-local log lookup Loopback lt managed-config-flag md5 motd mtu negotiation neq no-autoconfig option option other-config-flag packet packet-length port-channel portfast precedence protect provision psecure-violation psh reflect renumber restrict route-target rst scrypt sequence sequence-interval sha256 smart snooping standard startupconfig sticky stopbits syn synchronous TenGigabitEthernet terminal time-range timeout tos transparent ttl TwentyFiveGigE urg Vlan</Keywords>
+            <Keywords name="Keywords6">all allow-zeros auto-summary bgp default dscp dst-mac echo eigrp fragments ftp ftp-data gopher http ident imap ipv4 ipv6 isakmp lacp log-input nntp ospf pagp ping pop3 rate rip scp smtp snmp snmp-server sonet src-mac ssh tcp telnet tftp www</Keywords>
+            <Keywords name="Keywords7"></Keywords>
+            <Keywords name="Keywords8"></Keywords>
+            <Keywords name="Delimiters">00# 01 02# 03@ 04 05@ 06 07: 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23</Keywords>
+        </KeywordLists>
+        <Styles>
+            <WordsStyle name="DEFAULT" fgColor="000000" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="0" nesting="0" />
+            <WordsStyle name="COMMENTS" fgColor="008000" bgColor="FFFF80" fontName="Consolas" fontStyle="0" nesting="117702655" />
+            <WordsStyle name="LINE COMMENTS" fgColor="008000" bgColor="F2F2F2" colorStyle="1" fontName="Consolas" fontStyle="0" nesting="0" />
+            <WordsStyle name="NUMBERS" fgColor="2E74B5" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="0" nesting="0" />
+            <WordsStyle name="KEYWORDS1" fgColor="FF8000" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="1" nesting="0" />
+            <WordsStyle name="KEYWORDS2" fgColor="0000FF" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="0" nesting="0" />
+            <WordsStyle name="KEYWORDS3" fgColor="FF0000" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="1" nesting="0" />
+            <WordsStyle name="KEYWORDS4" fgColor="8000FF" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="1" nesting="0" />
+            <WordsStyle name="KEYWORDS5" fgColor="00D700" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="0" nesting="0" />
+            <WordsStyle name="KEYWORDS6" fgColor="CC00CC" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="0" nesting="0" />
+            <WordsStyle name="KEYWORDS7" fgColor="000080" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="0" nesting="0" />
+            <WordsStyle name="KEYWORDS8" fgColor="000000" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="0" nesting="0" />
+            <WordsStyle name="OPERATORS" fgColor="F65026" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="1" nesting="0" />
+            <WordsStyle name="FOLDER IN CODE1" fgColor="804000" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="1" nesting="0" />
+            <WordsStyle name="FOLDER IN CODE2" fgColor="000000" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="0" nesting="0" />
+            <WordsStyle name="FOLDER IN COMMENT" fgColor="000000" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS1" fgColor="008000" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="1" nesting="0" />
+            <WordsStyle name="DELIMITERS2" fgColor="008000" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS3" fgColor="000000" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="0" nesting="84147968" />
+            <WordsStyle name="DELIMITERS4" fgColor="000000" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS5" fgColor="000000" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS6" fgColor="000000" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS7" fgColor="000000" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="0" nesting="0" />
+            <WordsStyle name="DELIMITERS8" fgColor="000000" bgColor="FFFFFF" colorStyle="1" fontName="Consolas" fontStyle="0" nesting="0" />
+        </Styles>
+    </UserLang>
+</NotepadPlus>

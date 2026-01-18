@@ -26,6 +26,8 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+scripts
+.venv
 
 ### Windows ###
 # Windows thumbnail cache files

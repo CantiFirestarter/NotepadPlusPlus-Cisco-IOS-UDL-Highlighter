@@ -1,0 +1,54 @@
+name: Build Installer
+
+on:
+  push:
+    branches: [ main ]
+  release:
+    types: [ created ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Trust PSGallery
+        shell: powershell
+        run: |
+          if ((Get-PSRepository -ErrorAction SilentlyContinue) -eq $null) { Register-PSRepository -Default }
+          Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
+
+      - name: Install ps2exe module
+        shell: powershell
+        run: |
+          Install-Module -Name ps2exe -Force -Scope CurrentUser
+
+      - name: Build GUI EXE (ps2exe)
+        shell: powershell
+        run: |
+          $src = 'installers\installer_gui.ps1'
+          $outDir = 'dist'
+          New-Item -ItemType Directory -Path $outDir -Force | Out-Null
+          $outExe = Join-Path $outDir 'installer_gui.exe'
+          Invoke-ps2exe $src $outExe -noConsole -verbose
+
+      - name: Package files
+        shell: powershell
+        run: |
+          $pkgDir = 'dist\files'
+          New-Item -ItemType Directory -Path $pkgDir -Force | Out-Null
+          Copy-Item -Path 'Cisco_IOS_Redux.xml' -Destination $pkgDir -Force
+          if (Test-Path 'autoCompletion') { Copy-Item -Path 'autoCompletion' -Destination $pkgDir -Recurse -Force }
+          if (Test-Path 'EnhanceAnyLexer') { Copy-Item -Path 'EnhanceAnyLexer' -Destination $pkgDir -Recurse -Force }
+          if (Test-Path 'README.md') { Copy-Item -Path 'README.md' -Destination $pkgDir -Force }
+          Compress-Archive -Path dist\* -DestinationPath installer-package.zip -Force
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: installer-package
+          path: |
+            installer-package.zip
+            dist\installer_gui.exe
