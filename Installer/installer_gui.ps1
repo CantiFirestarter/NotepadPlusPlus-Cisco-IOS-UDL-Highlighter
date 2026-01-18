@@ -5,7 +5,13 @@ Param(
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
-$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
+$scriptDir = if ($PSScriptRoot) {
+    $PSScriptRoot
+} elseif ($PSCommandPath) {
+    Split-Path -Parent $PSCommandPath
+} else {
+    try { Split-Path -Parent $MyInvocation.MyCommand.Definition } catch { Split-Path -Parent $MyInvocation.MyCommand.Path }
+}
 $repoRoot = Join-Path $scriptDir '..'
 
 function Backup-IfExists($path) {
@@ -177,9 +183,15 @@ $btnElev.Size = New-Object System.Drawing.Size(110,36)
 $btnElev.Anchor = [System.Windows.Forms.AnchorStyles]::Bottom -bor [System.Windows.Forms.AnchorStyles]::Right
 $btnElev.Add_Click({
     $psi = New-Object System.Diagnostics.ProcessStartInfo
-    $psi.FileName = 'powershell'
-    $args = "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`" -elevated"
-    $psi.Arguments = $args
+    # If running as a .ps1 script, relaunch PowerShell with the script file. If running as a packaged EXE, relaunch the EXE elevated.
+    if ($PSCommandPath -and (Test-Path $PSCommandPath) -and ($PSCommandPath.ToLower().EndsWith('.ps1'))) {
+        $psi.FileName = 'powershell'
+        $psi.Arguments = "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`" -elevated"
+    } else {
+        $exePath = [System.Diagnostics.Process]::GetCurrentProcess().MainModule.FileName
+        $psi.FileName = $exePath
+        $psi.Arguments = '-elevated'
+    }
     $psi.Verb = 'runas'
     try { [System.Diagnostics.Process]::Start($psi) | Out-Null; $form.Close() } catch { [System.Windows.Forms.MessageBox]::Show('Elevation cancelled or failed.') }
 })

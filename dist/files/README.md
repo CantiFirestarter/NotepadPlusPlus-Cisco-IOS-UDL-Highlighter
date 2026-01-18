@@ -39,62 +39,22 @@ Notes:
 - If you install the plugin DLL manually to Program Files, ensure the config folder exists under `%AppData%` so the plugin can find its settings.
 - After installing, open Notepad++ and check `Plugins` → `EnhanceAnyLexer` to confirm it's available and configure any plugin options as needed.
 
-Manual install
---------------
-
-If you prefer to install files manually without using the installer, follow these steps.
-
-- UDL (User Defined Language):
-  1. Create the folder if needed: `%AppData%\Notepad++\userDefineLangs`.
-  2. Copy `Cisco_IOS_Redux.xml` into that folder.
-  3. Restart Notepad++.
-
-- Auto-completion (per-user or system-wide):
-  - Per-user (no admin rights):
-    1. Create `%AppData%\Notepad++\autoCompletion` if missing.
-    2. Copy `autoCompletion\Cisco IOS Redux.xml` into that folder.
-    3. Restart Notepad++ and enable auto-completion under Settings → Preferences → Auto-Completion.
-  - System-wide (requires administrator privileges):
-    1. Create `C:\Program Files\Notepad++\autoCompletion` if missing (requires elevation).
-    2. Copy `autoCompletion\Cisco IOS Redux.xml` into that folder.
-    3. Restart Notepad++.
-
-- EnhanceAnyLexer configuration:
-  1. Ensure the plugin is installed (Plugins Admin or manual DLL install).
-  2. Create `%AppData%\Notepad++\plugins\config\EnhanceAnyLexer` if missing.
-  3. Copy the contents of the repository's `EnhanceAnyLexer` folder into that config folder.
-  4. Restart Notepad++.
-
 Automated install
 -----------------
 
-If you'd prefer an automated installer, a single script is included in the `installers/` folder:
-
-- `install.bat` — Batch installer. Run by double-clicking or from a command prompt:
-
-  ```cmd
-  .\installers\install.bat
-  ```
-
-The script copies `Cisco_IOS_Redux.xml` into `%AppData%\Notepad++\userDefineLangs` and will also install the auto-completion file `autoCompletion/Cisco IOS Redux.xml` only if administrator privileges are granted. The installer will prompt to run elevated; if elevated it installs the auto-completion file into `C:\Program Files\Notepad++\autoCompletion`. If elevation is declined, auto-completion will be skipped (it will not be installed to `%AppData%`).
-
-- Note: Installing to `C:\Program Files\Notepad++` requires administrator privileges; if you decline elevation, auto-completion will not be installed.
-
-GUI installer
--------------
-
-If you prefer a graphical installer, a simple PowerShell GUI is provided at `installers\installer_gui.ps1`. It allows choosing which components to install and can relaunch itself elevated to install the auto-completion file system-wide.
-
-Run with PowerShell:
+GUI installer: a graphical PowerShell installer lives at `Installer\installer_gui.ps1` and can be built into an EXE by the CI workflow (artifact: `dist\installer_gui.exe`). Run locally with PowerShell:
 
 ```powershell
-PowerShell -ExecutionPolicy Bypass -File .\installers\installer_gui.ps1
+PowerShell -ExecutionPolicy Bypass -File .\Installer\installer_gui.ps1
 ```
 
-Note: The GUI requires Windows PowerShell with `System.Windows.Forms` available (standard on Windows PowerShell). The GUI will prompt for elevation when you click `Run Elevated`.
+The GUI can relaunch itself elevated to perform system-wide installation of the auto-completion files.
+
+Packaging / CI notes:
+
+- The GitHub Actions workflow builds the GUI script into `dist\installer_gui.exe` and packages the files into `installer-package.zip` as release artifacts. The CI does not include a batch installer.
 
 If the repository contains the `EnhanceAnyLexer` folder, the installers will copy its contents to `%AppData%\Notepad++\plugins\config\EnhanceAnyLexer` so the plugin can load its configuration. Existing contents are backed up (PowerShell uses timestamped backups; the batch installer moves existing contents to a `_backup_*` folder).
-
 Files with extensions `.cisco`, `.ios`, `.xe`, `.log`, `.txt`, `.conf`, and `.config` will automagically use this new UDL as their default language when opened with NotePad++. Remove or add any extension when desired.
 
 To change this behavior:
