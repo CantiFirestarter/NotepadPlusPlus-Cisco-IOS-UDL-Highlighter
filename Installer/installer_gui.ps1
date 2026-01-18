@@ -7,12 +7,21 @@ Add-Type -AssemblyName System.Drawing
 
 $scriptDir = if ($PSScriptRoot) {
     $PSScriptRoot
-} elseif ($PSCommandPath) {
+} elseif ($PSCommandPath -and (Test-Path $PSCommandPath)) {
     Split-Path -Parent $PSCommandPath
 } else {
     try { Split-Path -Parent $MyInvocation.MyCommand.Definition } catch { Split-Path -Parent $MyInvocation.MyCommand.Path }
 }
 $repoRoot = Join-Path $scriptDir '..'
+
+# If scriptDir couldn't be determined (packaged EXE), fall back to EXE location
+if (-not $scriptDir -or $scriptDir -eq '') {
+    try {
+        $exePath = [System.Diagnostics.Process]::GetCurrentProcess().MainModule.FileName
+        $scriptDir = Split-Path -Parent $exePath
+        $repoRoot = Join-Path $scriptDir '..'
+    } catch { }
+}
 
 function Backup-IfExists($path) {
     if (Test-Path $path) {
@@ -32,12 +41,15 @@ function Install-All {
 
     if ($DoUDL) {
         $udlSrc = Join-Path $repoRoot 'Cisco_IOS_Redux.xml'
-        $udlDstDir = Join-Path $env:APPDATA 'Notepad++\userDefineLangs'
-        if (-not (Test-Path $udlDstDir)) { New-Item -ItemType Directory -Path $udlDstDir -Force | Out-Null }
-        $udlDst = Join-Path $udlDstDir 'Cisco_IOS_Redux.xml'
-        Backup-IfExists $udlDst
-        Copy-Item -LiteralPath $udlSrc -Destination $udlDst -Force
-        $results.Add("UDL installed to $udlDst") | Out-Null
+        if (Test-Path $udlSrc) {
+            $udlDstDir = Join-Path $env:APPDATA 'Notepad++\userDefineLangs'
+            if (-not (Test-Path $udlDstDir)) { New-Item -ItemType Directory -Path $udlDstDir -Force | Out-Null }
+            $udlDst = Join-Path $udlDstDir 'Cisco_IOS_Redux.xml'
+            Backup-IfExists $udlDst
+            try { Copy-Item -LiteralPath $udlSrc -Destination $udlDst -Force; $results.Add("UDL installed to $udlDst") | Out-Null } catch { $results.Add("UDL install failed: $_") | Out-Null }
+        } else {
+            $results.Add('UDL source not found (skipped)') | Out-Null
+        }
     } else {
         $results.Add('UDL: skipped') | Out-Null
     }
